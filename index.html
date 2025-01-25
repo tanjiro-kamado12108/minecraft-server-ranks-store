@@ -102,7 +102,8 @@
         .popup ul li {
             margin-bottom: 10px;
         }
-        .popup ul li button {
+        .popup ul li a {
+            text-decoration: none;
             padding: 10px 15px;
             font-size: 16px;
             background-color: #ff9900;
@@ -111,8 +112,9 @@
             border-radius: 8px;
             cursor: pointer;
             transition: background-color 0.3s;
+            display: inline-block;
         }
-        .popup ul li button:hover {
+        .popup ul li a:hover {
             background-color: #cc7a00;
         }
         .popup .close-button {
@@ -140,27 +142,6 @@
             background-color: rgba(0, 0, 0, 0.7);
             z-index: 999;
         }
-
-        /* Responsive Styles */
-        @media (max-width: 768px) {
-            body {
-                height: auto;
-                padding: 20px 10px;
-            }
-            .rank-container {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-            .rank {
-                padding: 15px;
-            }
-            .rank-name {
-                font-size: 20px;
-            }
-            .price {
-                font-size: 18px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -175,15 +156,7 @@
                     <li>Speed I</li>
                 </ul>
             </div>
-            <div class="rewards">
-                <strong>Crate Rewards:</strong>
-                <ul>
-                    <li>Iron tools</li>
-                    <li>Golden apples</li>
-                    <li>1 Totem of Undying</li>
-                </ul>
-            </div>
-            <button class="buy-button" onclick="showPopup()">Buy</button>
+            <button class="buy-button" onclick="showPopup('100')">Buy</button>
         </div>
         <div class="rank">
             <h2 class="rank-name">MVP</h2>
@@ -196,15 +169,7 @@
                     <li>Haste I</li>
                 </ul>
             </div>
-            <div class="rewards">
-                <strong>Crate Rewards:</strong>
-                <ul>
-                    <li>Enchanted iron tools</li>
-                    <li>Golden apples</li>
-                    <li>1 Totem of Undying</li>
-                </ul>
-            </div>
-            <button class="buy-button" onclick="showPopup()">Buy</button>
+            <button class="buy-button" onclick="showPopup('200')">Buy</button>
         </div>
         <div class="rank">
             <h2 class="rank-name">ELITE</h2>
@@ -218,15 +183,7 @@
                     <li>Regeneration III</li>
                 </ul>
             </div>
-            <div class="rewards">
-                <strong>Crate Rewards:</strong>
-                <ul>
-                    <li>Enchanted diamond tools</li>
-                    <li>Golden apples</li>
-                    <li>5 Totem of Undying</li>
-                </ul>
-            </div>
-            <button class="buy-button" onclick="showPopup()">Buy</button>
+            <button class="buy-button" onclick="showPopup('500')">Buy</button>
         </div>
         <div class="rank">
             <h2 class="rank-name">LEGENDARY</h2>
@@ -241,15 +198,7 @@
                     <li>Health Boost V</li>
                 </ul>
             </div>
-            <div class="rewards">
-                <strong>Crate Rewards:</strong>
-                <ul>
-                    <li>Maxed enchanted netherite tools</li>
-                    <li>Enchanted golden apples</li>
-                    <li>20 Totem of Undying</li>
-                </ul>
-            </div>
-            <button class="buy-button" onclick="showPopup()">Buy</button>
+            <button class="buy-button" onclick="showPopup('1000')">Buy</button>
         </div>
     </div>
 
@@ -258,15 +207,15 @@
     <div class="popup" id="popup">
         <h3>Choose Payment Method</h3>
         <ul>
-            <li><button>Pay via UPI</button></li>
-            <li><button>Debit/Credit</button></li>
-            <li><button>Wallets</button></li>
+            <li><a id="upi-link" href="#" target="_blank">Pay via UPI</a></li>
         </ul>
         <button class="close-button" onclick="hidePopup()">Close</button>
     </div>
 
     <script>
-        function showPopup() {
+        function showPopup(amount) {
+            const upiLink = `upi://pay?pa=6372520307@fam&pn=Payment&am=${amount}&cu=INR`;
+            document.getElementById('upi-link').href = upiLink;
             document.getElementById('popup').style.display = 'block';
             document.getElementById('overlay').style.display = 'block';
         }
