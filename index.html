@@ -212,7 +212,7 @@
 
     <script>
         function showPopup(amount) {
-            const upiLink = `upi://pay?pa=6372520307@fam&pn=Payment&am=${amount}&cu=INR`;
+            const upiLink = `upi://pay?pa=6372520307@fam&pn=Payment&am=${amount.toFixed(2)}&cu=INR`;
             document.getElementById('upi-link').href = upiLink;
             document.getElementById('popup').style.display = 'block';
             document.getElementById('overlay').style.display = 'block';
