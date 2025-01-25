@@ -11,37 +11,39 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f0f0f0;
+            background-color: #1a1a1a;
+            color: #ffffff;
             margin: 0;
+            padding: 0;
         }
         .rank-container {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
             padding: 20px;
+            width: 100%;
+            max-width: 1200px;
+            box-sizing: border-box;
         }
         .rank {
-            background-color: #fff;
+            background-color: #333333;
             border-radius: 15px;
             padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
             transition: transform 0.3s, box-shadow 0.3s;
             text-align: center;
         }
         .rank:hover {
             transform: translateY(-10px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
         }
         .rank h2 {
             margin-top: 0;
+            color: #ffcc00;
         }
         .rank-name {
             font-size: 24px;
             margin-bottom: 10px;
-            transition: text-shadow 0.3s;
-        }
-        .rank:hover .rank-name {
-            text-shadow: 0 0 10px #ff9900;
         }
         .price {
             font-size: 20px;
@@ -50,6 +52,114 @@
         }
         .effects, .rewards {
             text-align: left;
+            margin: 0;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 0;
+        }
+        .buy-button {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #ffffff;
+            background-color: #ff9900;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .buy-button:hover {
+            background-color: #cc7a00;
+        }
+        /* Popup Styles */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 400px;
+            background-color: #262626;
+            color: #ffffff;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+        }
+        .popup h3 {
+            margin-top: 0;
+            text-align: center;
+        }
+        .popup ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .popup ul li {
+            margin-bottom: 10px;
+        }
+        .popup ul li button {
+            padding: 10px 15px;
+            font-size: 16px;
+            background-color: #ff9900;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .popup ul li button:hover {
+            background-color: #cc7a00;
+        }
+        .popup .close-button {
+            display: block;
+            margin: 0 auto;
+            padding: 8px 16px;
+            background-color: #444444;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .popup .close-button:hover {
+            background-color: #666666;
+        }
+        /* Overlay */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            body {
+                height: auto;
+                padding: 20px 10px;
+            }
+            .rank-container {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            .rank {
+                padding: 15px;
+            }
+            .rank-name {
+                font-size: 20px;
+            }
+            .price {
+                font-size: 18px;
+            }
         }
     </style>
 </head>
@@ -73,6 +183,7 @@
                     <li>1 Totem of Undying</li>
                 </ul>
             </div>
+            <button class="buy-button" onclick="showPopup()">Buy</button>
         </div>
         <div class="rank">
             <h2 class="rank-name">MVP</h2>
@@ -93,6 +204,7 @@
                     <li>1 Totem of Undying</li>
                 </ul>
             </div>
+            <button class="buy-button" onclick="showPopup()">Buy</button>
         </div>
         <div class="rank">
             <h2 class="rank-name">ELITE</h2>
@@ -114,6 +226,7 @@
                     <li>5 Totem of Undying</li>
                 </ul>
             </div>
+            <button class="buy-button" onclick="showPopup()">Buy</button>
         </div>
         <div class="rank">
             <h2 class="rank-name">LEGENDARY</h2>
@@ -136,7 +249,32 @@
                     <li>20 Totem of Undying</li>
                 </ul>
             </div>
+            <button class="buy-button" onclick="showPopup()">Buy</button>
         </div>
     </div>
+
+    <!-- Popup Menu -->
+    <div class="overlay" id="overlay"></div>
+    <div class="popup" id="popup">
+        <h3>Choose Payment Method</h3>
+        <ul>
+            <li><button>Pay via UPI</button></li>
+            <li><button>Debit/Credit</button></li>
+            <li><button>Wallets</button></li>
+        </ul>
+        <button class="close-button" onclick="hidePopup()">Close</button>
+    </div>
+
+    <script>
+        function showPopup() {
+            document.getElementById('popup').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        function hidePopup() {
+            document.getElementById('popup').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+    </script>
 </body>
 </html>
