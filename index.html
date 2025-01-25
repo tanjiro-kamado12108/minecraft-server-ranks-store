@@ -3,94 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minecraft Server Ranks</title>
+    <title>Ranks</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
             margin: 0;
-            padding: 0;
         }
-        .container {
-            width: 80%;
-            margin: 0 auto;
+        .rank-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
             padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        h1, h2 {
-            text-align: center;
         }
         .rank {
-            border: 1px solid #ddd;
-            margin: 20px 0;
+            background-color: #fff;
+            border-radius: 15px;
             padding: 20px;
-            background-color: #fafafa;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
         }
-        .rank h3 {
-            margin: 0 0 10px;
+        .rank:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
-        .rank p {
-            margin: 0 0 5px;
+        .rank h2 {
+            margin-top: 0;
         }
-        .rank .price {
-            font-size: 1.2em;
-            font-weight: bold;
-            color: #007BFF;
+        .rank-name {
+            font-size: 24px;
+            margin-bottom: 10px;
+            transition: text-shadow 0.3s;
         }
-        .buy-button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #28a745;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 10px;
+        .rank:hover .rank-name {
+            text-shadow: 0 0 10px #ff9900;
         }
-        .buy-button:hover {
-            background-color: #218838;
+        .price {
+            font-size: 20px;
+            color: #ff9900;
+            margin-bottom: 10px;
+        }
+        .effects, .rewards {
+            text-align: left;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to Our Minecraft Server</h1>
-        <h2>Buy Ranks to Enhance Your Experience</h2>
-        
+    <div class="rank-container">
         <div class="rank">
-            <h3>VIP Rank</h3>
-            <p>Features:</p>
-            <ul>
-                <li>Access to VIP lounge</li>
-                <li>Exclusive in-game items</li>
-                <li>Priority server access</li>
-            </ul>
-            <p class="price">$10.00</p>
-            <a href="#" class="buy-button">Buy Now</a>
+            <h2 class="rank-name">VIP</h2>
+            <div class="price">100 INR</div>
+            <div class="effects">
+                <strong>Effects:</strong>
+                <ul>
+                    <li>Strength I</li>
+                    <li>Speed I</li>
+                </ul>
+            </div>
+            <div class="rewards">
+                <strong>Crate Rewards:</strong>
+                <ul>
+                    <li>Iron tools</li>
+                    <li>Golden apples</li>
+                    <li>1 Totem of Undying</li>
+                </ul>
+            </div>
         </div>
-        
         <div class="rank">
-            <h3>MVP Rank</h3>
-            <p>Features:</p>
-            <ul>
-                <li>All VIP features</li>
-                <li>Double rewards</li>
-                <li>Unique MVP kit</li>
-            </ul>
-            <p class="price">$25.00</p>
-            <a href="#" class="buy-button">Buy Now</a>
+            <h2 class="rank-name">MVP</h2>
+            <div class="price">200 INR</div>
+            <div class="effects">
+                <strong>Effects:</strong>
+                <ul>
+                    <li>Strength I</li>
+                    <li>Speed I</li>
+                    <li>Haste I</li>
+                </ul>
+            </div>
+            <div class="rewards">
+                <strong>Crate Rewards:</strong>
+                <ul>
+                    <li>Enchanted iron tools</li>
+                    <li>Golden apples</li>
+                    <li>1 Totem of Undying</li>
+                </ul>
+            </div>
         </div>
-        
         <div class="rank">
-            <h3>Elite Rank</h3>
-            <p>Features:</p>
-            <ul>
-                <li>All MVP features</li>
-                <li>Custom commands</li>
-                <li>Personalized support</li>
-            </ul>
-            <p class="price">$50.00</p>
-            <a href="#" class="buy-button">Buy Now</a>
+            <h2 class="rank-name">ELITE</h2>
+            <div class="price">500 INR</div>
+            <div class="effects">
+                <strong>Effects:</strong>
+                <ul>
+                    <li>Strength II</li>
+                    <li>Speed II</li>
+                    <li>Haste II</li>
+                    <li>Regeneration III</li>
+                </ul>
+            </div>
+            <div class="rewards">
+                <strong>Crate Rewards:</strong>
+                <ul>
+                    <li>Enchanted diamond tools</li>
+                    <li>Golden apples</li>
+                    <li>5 Totem of Undying</li>
+                </ul>
+            </div>
+        </div>
+        <div class="rank">
+            <h2 class="rank-name">LEGENDARY</h2>
+            <div class="price">1000 INR</div>
+            <div class="effects">
+                <strong>Effects:</strong>
+                <ul>
+                    <li>Strength II</li>
+                    <li>Speed II</li>
+                    <li>Haste II</li>
+                    <li>Regeneration III</li>
+                    <li>Health Boost V</li>
+                </ul>
+            </div>
+            <div class="rewards">
+                <strong>Crate Rewards:</strong>
+                <ul>
+                    <li>Maxed enchanted netherite tools</li>
+                    <li>Enchanted golden apples</li>
+                    <li>20 Totem of Undying</li>
+                </ul>
+            </div>
         </div>
     </div>
 </body>
