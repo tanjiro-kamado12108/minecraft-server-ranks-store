@@ -329,6 +329,8 @@
 
             z-index: 999;
 
+            
+
         }
 
     </style>
@@ -513,5 +515,54 @@
     </script>
 
 </body>
+
+<style>
+    @font-face {
+        font-family: 'Minecraft';
+        src: url('https://fonts.cdnfonts.com/s/12188/Minecraft-Regular.woff') format('woff');
+    }
+
+    body {
+        font-family: 'Minecraft', Arial, sans-serif;
+    }
+
+    .rank {
+        background-size: cover;
+        background-position: center;
+    }
+
+    .rank:nth-child(1) {
+        background-image: url('https://i.imgur.com/1c5a1a1.png'); /* Iron */
+    }
+
+    .rank:nth-child(2) {
+        background-image: url('https://i.imgur.com/2c5a2a2.png'); /* Gold */
+    }
+
+    .rank:nth-child(3) {
+        background-image: url('https://i.imgur.com/3c5a3a3.png'); /* Diamond */
+        border: 2px solid blue;
+        box-shadow: 0 0 15px 5px electricblue;
+    }
+
+    .rank:nth-child(4) {
+        background-image: url('https://i.imgur.com/4c5a4a4.png'); /* Netherite */
+    }
+</style>
+
+<script>
+    function showPopup(amount) {
+        const monthlyLink = `upi://pay?pa=6372520307@fam&pn=Payment&am=${(amount - 1).toFixed(2)}&cu=INR`;
+        const threeMonthLink = `upi://pay?pa=6372520307@fam&pn=Payment&am=${(amount * 2.5 - 1).toFixed(2)}&cu=INR`;
+
+        document.getElementById('upi-link').href = monthlyLink;
+        document.getElementById('upi-link').textContent = `${(amount - 1).toFixed(2)} INR per Month`;
+        document.getElementById('three-month-link').href = threeMonthLink;
+        document.getElementById('three-month-link').textContent = `${(amount * 2.5 - 1).toFixed(2)} INR per 3 Months`;
+
+        document.getElementById('popup').style.display = 'block';
+        document.getElementById('overlay').style.display = 'block';
+    }
+</script>
 
 </html>
