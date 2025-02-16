@@ -1,51 +1,72 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #121212;
+    color: white;
+    text-align: center;
     margin: 0;
     padding: 0;
 }
 
+h1 {
+    margin-top: 20px;
+}
+
 .container {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
 }
 
 .rank-box {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    width: 220px;
     padding: 20px;
-    margin-bottom: 20px;
+    border-radius: 10px;
     text-align: center;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease-in-out, transform 0.2s;
+    font-weight: bold;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
 }
 
-.rank-box.iron {
-    border-color: #b0b0b0;
+.rank-box:hover {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); /* Glowing effect */
+    transform: scale(1.05);
 }
 
-.rank-box.gold {
-    border-color: #ffd700;
+.iron {
+    background-color: #b0b0b0;
+    border: 2px solid #8a8a8a;
 }
 
-.rank-box.diamond {
-    border-color: #b9f2ff;
+.gold {
+    background-color: #ffd700;
+    border: 2px solid #b8860b;
 }
 
-.rank-box.netherite {
-    border-color: #4c4c4c;
+.diamond {
+    background-color: #4dd0e1;
+    border: 2px solid #00838f;
+}
+
+.netherite {
+    background-color: #3e2723;
+    border: 2px solid #ff3d00;
 }
 
 .buy-button {
     display: inline-block;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: red;
+    color: white;
     text-decoration: none;
     border-radius: 5px;
-    margin-top: 10px;
+    transition: background-color 0.3s;
 }
 
 .buy-button:hover {
-    background-color: #0056b3;
+    background-color: darkred;
 }
